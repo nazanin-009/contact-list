@@ -1,24 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import Header from './components/header/Header';
+import Contacts from './components/contacts/Contacts';
+import { AccountCircle } from '@mui/icons-material';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Header title='conatct'/>
+     <Contacts
+     name='Amir'
+     email='amir@gmail.com'
+     number='09056082788'
+     icon={<AccountCircle/>}
+     />
+     <Contacts
+     name='Nazanin'
+     email='nazaninsgh9@gmail.com'
+     number='09056364770'
+     icon={<AccountCircle/>}
+     />
+     <Contacts
+     name='Farzin'
+     email='farzin@gmail.com'
+     number='09925094247'
+     icon={<AccountCircle/>}
+     />
     </div>
   );
 }
