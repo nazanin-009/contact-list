@@ -1,33 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 import Header from './components/header/Header';
 import Contacts from './components/contacts/Contacts';
 import { AccountCircle } from '@mui/icons-material';
+import DarkModeProvider from './data/contexts/DarkMode.context';
+import Home from './components/home/Home';
+import NewContact from './components/contacts/NewContact';
+import HabitProvider, { ContactContext } from './data/contexts/ContactsData.context';
+import ContactProvider from './data/contexts/ContactsData.context';
+
 
 function App() {
+  const [currentPage,setCurrentPage]=useState("home")
+  const changePage=(pageName:string)=>{
+    setCurrentPage(pageName)
+  }
+const goHome=()=>{
+  setCurrentPage("home")
+}
   return (
+   <DarkModeProvider>
+  <ContactProvider>
     <div className='App'>
       <Header title='conatct'/>
-     <Contacts
-     name='Amir'
-     email='amir@gmail.com'
-     number='09056082788'
-     icon={<AccountCircle/>}
-     />
-     <Contacts
-     name='Nazanin'
-     email='nazaninsgh9@gmail.com'
-     number='09056364770'
-     icon={<AccountCircle/>}
-     />
-     <Contacts
-     name='Farzin'
-     email='farzin@gmail.com'
-     number='09925094247'
-     icon={<AccountCircle/>}
-     />
-    </div>
+     {currentPage == "Add" && <NewContact onButtonClick={goHome} contactIndex={0}/>}
+     {currentPage == "home" && <Home onPageSelect={changePage}/>}
+
+     </div>
+     </ContactProvider>
+    </DarkModeProvider>
+ 
   );
 }
 
